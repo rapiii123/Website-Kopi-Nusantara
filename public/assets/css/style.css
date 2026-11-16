@@ -1,0 +1,599 @@
+/**
+ * ==============================================================================
+ * PROYEK PRAKTIKUM PEMROGRAMAN WEB: WEBSITE KATALOG "KOPI NUSANTARA"
+ * Framework: CodeIgniter 4 (CI4)
+ * Tema Desain: Modern Dark Navy (#0F172A) & Luxury Gold/Amber (#F59E0B)
+ * Tipografi: Poppins (Heading) & Inter (Paragraf & Body)
+ * ==============================================================================
+ */
+
+/* ==============================================================================
+ * BAGIAN 1: VARIABEL WARNA TEMA & ROOT DEFINITION
+ * ============================================================================== */
+:root {
+    /* Skema Warna Utama */
+    --bg-dark-navy: #0F172A;       /* Dark Navy pekat sebagai background utama */
+    --bg-navy-card: #1E293B;       /* Card surface dark navy sedikit lebih terang */
+    --bg-navy-elevated: #334155;   /* Surface untuk komponen elevated/hover */
+    
+    /* Aksen Emas & Amber */
+    --accent-gold: #F59E0B;        /* Gold/Amber cerah untuk aksen & highlight */
+    --accent-gold-hover: #D97706;  /* Amber gelap untuk hover state */
+    --accent-gold-light: #FDE68A;  /* Light amber untuk teks aksen halus */
+    --accent-gold-glow: rgba(245, 158, 11, 0.25); /* Glow shadow emas */
+
+    /* Warna Teks */
+    --text-primary: #F8FAFC;      /* Putih bersih untuk keterbacaan tinggi */
+    --text-secondary: #CBD5E1;    /* Abu terang untuk paragraf utama */
+    --text-muted: #94A3B8;        /* Abu redup untuk metadata/keterangan */
+    
+    /* Warna Format Teks Khusus (Kebutuhan Analisis Praktikum) */
+    --text-custom-cyan: #38BDF8;   /* Cyan cerah */
+    --text-custom-emerald: #34D399;/* Emerald cerah */
+    --text-custom-rose: #FB7185;   /* Rose cerah */
+
+    /* Garis & Border */
+    --border-subtle: rgba(245, 158, 11, 0.2);
+    --border-hover: rgba(245, 158, 11, 0.6);
+
+    /* Font Family */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Transisi */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==============================================================================
+ * BAGIAN 2: RESET DASAR & TIPOGRAFI
+ * ============================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark-navy);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Hierarki Heading */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.4;
+}
+
+/* Pembagi Section (Sub-title Badge) */
+.section-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--border-subtle);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+/* ==============================================================================
+ * BAGIAN 3: NAVBAR ELEGAN & GLASSMORPHISM
+ * ============================================================================== */
+.navbar-custom {
+    background-color: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+    padding: 0.9rem 0;
+    transition: var(--transition-smooth);
+}
+
+.navbar-custom .navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.brand-icon {
+    color: var(--accent-gold);
+    filter: drop-shadow(0 0 10px var(--accent-gold-glow));
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--accent-gold);
+}
+
+.navbar-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: var(--transition-smooth);
+}
+
+.navbar-custom .nav-link:hover::after,
+.navbar-custom .nav-link.active::after {
+    width: 60%;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-hover) 100%);
+    color: #0F172A !important;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: 0.65rem 1.6rem;
+    box-shadow: 0 4px 14px var(--accent-gold-glow);
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+    color: #0F172A !important;
+}
+
+.btn-outline-gold {
+    background: transparent;
+    color: var(--accent-gold) !important;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    border: 1px solid var(--accent-gold);
+    border-radius: 50px;
+    padding: 0.65rem 1.6rem;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-outline-gold:hover {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: var(--accent-gold-light) !important;
+    transform: translateY(-2px);
+}
+
+/* ==============================================================================
+ * BAGIAN 4: HERO SECTION & ANIMASI TEKS
+ * ============================================================================== */
+.hero-section {
+    min-height: 90vh;
+    padding: 8rem 0 5rem 0;
+    background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.5) 0%, transparent 60%),
+                var(--bg-dark-navy);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Teks Gradasi Emas */
+.text-gold-gradient {
+    background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #B45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Efek Typing Animation via CSS Murni */
+.typing-container {
+    display: inline-block;
+    border-right: 3px solid var(--accent-gold);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(30, end) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCaret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent-gold); }
+}
+
+/* Efek Glow & Pulsa untuk Elemen Hero */
+.hero-glow-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+}
+
+.hero-glow-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 20px 45px rgba(245, 158, 11, 0.15);
+}
+
+/* ==============================================================================
+ * BAGIAN 5: FORMAT TEKS LENGKAP & WARNA KHUSUS (PERTEMUAN 1)
+ * ============================================================================== */
+.card-text-analysis {
+    background-color: var(--bg-navy-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid var(--accent-gold);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Format Paragraf Spesifik */
+.custom-paragraph {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+}
+
+/* Format Teks Tebal (strong) */
+.custom-paragraph strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Format Teks Miring (em) */
+.custom-paragraph em {
+    color: var(--accent-gold-light);
+    font-style: italic;
+    font-family: Georgia, serif;
+}
+
+/* Format Teks Garis Bawah (u) */
+.custom-paragraph u {
+    text-decoration: none;
+    border-bottom: 2px dashed var(--accent-gold);
+    padding-bottom: 2px;
+    color: var(--text-primary);
+}
+
+/* Class Warna Teks Khusus */
+.text-custom-amber {
+    color: var(--accent-gold) !important;
+    font-weight: 600;
+}
+
+.text-custom-cyan {
+    color: var(--text-custom-cyan) !important;
+    font-weight: 600;
+}
+
+.text-custom-emerald {
+    color: var(--text-custom-emerald) !important;
+    font-weight: 600;
+}
+
+.text-custom-rose {
+    color: var(--text-custom-rose) !important;
+    font-weight: 600;
+}
+
+/* ==============================================================================
+ * BAGIAN 6: DAFTAR BERPOIN (UL & LI) DAN HYPERTEXT (A HREF)
+ * ============================================================================== */
+.custom-bullet-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.custom-bullet-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.85rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: var(--transition-smooth);
+}
+
+.custom-bullet-list li::before {
+    content: "☕";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.95rem;
+    color: var(--accent-gold);
+    line-height: 1.6;
+}
+
+.custom-bullet-list li:hover {
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+/* Tautan / Hypertext (a href) */
+.custom-link {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.custom-link:hover {
+    color: var(--accent-gold-light);
+    border-bottom-color: var(--accent-gold-light);
+    text-decoration: none;
+}
+
+.custom-link-external {
+    color: var(--text-custom-cyan);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: var(--transition-smooth);
+}
+
+.custom-link-external:hover {
+    color: #7dd3fc;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+/* ==============================================================================
+ * BAGIAN 7: GALERI PRODUK & KARTU GAMBAR (TAG IMG LOKAL)
+ * ============================================================================== */
+.product-card {
+    background-color: var(--bg-navy-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 25px rgba(245, 158, 11, 0.15);
+}
+
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background-color: #0B1120;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+}
+
+.product-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-title {
+    color: var(--text-primary);
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-origin {
+    color: var(--accent-gold);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.product-notes {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+.product-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+}
+
+/* ==============================================================================
+ * BAGIAN 8: KOMPONEN MULTIMEDIA (AUDIO & VIDEO PLAYER)
+ * ============================================================================== */
+.media-card {
+    background-color: var(--bg-navy-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.25rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
+    height: 100%;
+}
+
+.media-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1);
+}
+
+/* Audio Player Wrapper */
+.audio-player-wrapper {
+    background: #0B1120;
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1.25rem;
+}
+
+.audio-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.audio-icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+}
+
+/* Customizing HTML5 Native Audio */
+audio {
+    width: 100%;
+    border-radius: 30px;
+    outline: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Video Player Wrapper */
+.video-player-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-top: 1.25rem;
+}
+
+video {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    outline: none;
+}
+
+/* ==============================================================================
+ * BAGIAN 9: FOOTER & UTILITAS
+ * ============================================================================== */
+.footer-custom {
+    background-color: #0A0F1D;
+    border-top: 1px solid rgba(245, 158, 11, 0.15);
+    padding: 4rem 0 2rem 0;
+    color: var(--text-muted);
+}
+
+.footer-custom h5 {
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-custom a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-custom a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.88rem;
+}
