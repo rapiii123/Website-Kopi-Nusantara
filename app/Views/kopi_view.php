@@ -19,7 +19,7 @@ $multimedia = $multimedia ?? [
 ];
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,7 +175,7 @@ $multimedia = $multimedia ?? [
                     <span class="section-badge">Pertemuan 1 • Analisis Praktikum</span>
                     <!-- Heading Level 2 (H2) -->
                     <h2 class="fw-bold">Eksplorasi Format Teks & Karakteristik Kopi</h2>
-                    <p class="text-muted mx-auto" style="max-width: 650px;">
+                    <p class="section-subtitle mx-auto" style="max-width: 650px;">
                         Implementasi lengkap elemen tipografi HTML5, format penekanan teks, daftar berpoin, dan tautan hiperteks interaktif.
                     </p>
                 </div>
@@ -257,7 +257,7 @@ $multimedia = $multimedia ?? [
                     <span class="section-badge">Koleksi Pilihan • Single Origin</span>
                     <!-- Heading Level 2 (H2) -->
                     <h2 class="fw-bold">Galeri Produk Kopi Nusantara</h2>
-                    <p class="text-muted mx-auto" style="max-width: 600px;">
+                    <p class="section-subtitle mx-auto" style="max-width: 600px;">
                         Tiga varietas kopi primadona dari tiga pulau kepulauan Indonesia dengan pesona rasa yang otentik.
                     </p>
                 </div>
@@ -324,7 +324,7 @@ $multimedia = $multimedia ?? [
                     <span class="section-badge">Multimedia Praktikum • Audio & Video</span>
                     <!-- Heading Level 2 (H2) -->
                     <h2 class="fw-bold">Showcase Multimedia Kopi Nusantara</h2>
-                    <p class="text-muted mx-auto" style="max-width: 650px;">
+                    <p class="section-subtitle mx-auto" style="max-width: 650px;">
                         Integrasi pemutar audio dan video HTML5 menggunakan berkas lokal untuk analisis multimedia interaktif.
                     </p>
                 </div>
@@ -414,7 +414,7 @@ $multimedia = $multimedia ?? [
                         <i class="bi bi-cup-hot-fill fs-3 text-custom-amber"></i>
                         <h4 class="h5 mb-0 text-white fw-bold"><?= esc($brand['name']) ?></h4>
                     </div>
-                    <p class="small text-muted mb-3 pe-lg-4">
+                    <p class="footer-desc mb-3 pe-lg-4">
                         <?= esc($brand['tagline']) ?>. Proyek implementasi antarmuka web modern dengan arsitektur CodeIgniter 4 (CI4), Bootstrap 5, dan spesifikasi multimedia praktikum.
                     </p>
                     <div class="d-flex gap-3 fs-5">
@@ -437,7 +437,7 @@ $multimedia = $multimedia ?? [
 
                 <div class="col-6 col-lg-4">
                     <h5>Spesifikasi Teknis</h5>
-                    <ul class="list-unstyled small text-muted">
+                    <ul class="list-unstyled small footer-specs">
                         <li class="mb-1"><strong>Framework:</strong> CodeIgniter v4.7.6</li>
                         <li class="mb-1"><strong>Mode:</strong> Static MVC (Controller & View)</li>
                         <li class="mb-1"><strong>CSS Library:</strong> Bootstrap 5.3.3 + Custom CSS</li>

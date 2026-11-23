@@ -22,10 +22,10 @@
     --accent-gold-light: #FDE68A;  /* Light amber untuk teks aksen halus */
     --accent-gold-glow: rgba(245, 158, 11, 0.25); /* Glow shadow emas */
 
-    /* Warna Teks */
-    --text-primary: #F8FAFC;      /* Putih bersih untuk keterbacaan tinggi */
-    --text-secondary: #CBD5E1;    /* Abu terang untuk paragraf utama */
-    --text-muted: #94A3B8;        /* Abu redup untuk metadata/keterangan */
+    /* Warna Teks - Dibuat Kontras Tinggi & Sangat Terbaca di Background Gelap */
+    --text-primary: #FFFFFF;      /* Putih murni untuk heading dan teks penting */
+    --text-secondary: #E2E8F0;    /* Putih keperakan terang untuk paragraf utama */
+    --text-muted: #CBD5E1;        /* Abu-abu terang (bukan gelap) agar terbaca jelas */
     
     /* Warna Format Teks Khusus (Kebutuhan Analisis Praktikum) */
     --text-custom-cyan: #38BDF8;   /* Cyan cerah */
@@ -100,6 +100,26 @@ h3 {
     padding: 0.4rem 1.2rem;
     border-radius: 50px;
     margin-bottom: 1rem;
+}
+
+/* Sub-judul di Bawah Heading H2 & H1 (Sangat Terbaca & Kontras Tinggi) */
+.section-subtitle {
+    color: #E2E8F0 !important;
+    font-size: 1.08rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Override Global Bootstrap .text-muted Agar Jelas dan Terang di Background Gelap */
+.text-muted,
+p.text-muted,
+span.text-muted,
+small.text-muted,
+div.text-muted,
+ul.text-muted,
+li.text-muted {
+    color: #CBD5E1 !important;
 }
 
 /* ==============================================================================
@@ -469,9 +489,9 @@ h3 {
 }
 
 .product-notes {
-    color: var(--text-muted);
-    font-size: 0.92rem;
-    line-height: 1.6;
+    color: #E2E8F0;
+    font-size: 0.95rem;
+    line-height: 1.65;
     margin-bottom: 1.25rem;
     flex-grow: 1;
 }
@@ -569,19 +589,27 @@ video {
  * ============================================================================== */
 .footer-custom {
     background-color: #0A0F1D;
-    border-top: 1px solid rgba(245, 158, 11, 0.15);
+    border-top: 1px solid rgba(245, 158, 11, 0.2);
     padding: 4rem 0 2rem 0;
-    color: var(--text-muted);
+    color: #E2E8F0;
 }
 
+.footer-custom h4,
 .footer-custom h5 {
-    color: var(--text-primary);
+    color: #FFFFFF !important;
     font-size: 1.15rem;
+    font-weight: 700;
     margin-bottom: 1.2rem;
 }
 
+.footer-desc {
+    color: #CBD5E1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
 .footer-custom a {
-    color: var(--text-muted);
+    color: #CBD5E1;
     text-decoration: none;
     transition: var(--transition-smooth);
 }
@@ -590,10 +618,25 @@ video {
     color: var(--accent-gold);
 }
 
+.footer-specs li {
+    color: #CBD5E1;
+    font-size: 0.92rem;
+    margin-bottom: 0.6rem;
+}
+
+.footer-specs strong {
+    color: #FFFFFF;
+}
+
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 3rem;
     padding-top: 1.5rem;
     text-align: center;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
+    color: #CBD5E1;
+}
+
+.footer-bottom strong {
+    color: #FFFFFF;
 }
