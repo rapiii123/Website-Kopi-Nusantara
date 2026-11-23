@@ -1,3 +1,23 @@
+<?php
+/**
+ * Inisialisasi variabel dari Controller (App\Controllers\Kopi)
+ * Menghilangkan peringatan "Undefined variable" pada PHP Intelephense / IDE VS Code.
+ * 
+ * @var string $metaTitle
+ * @var array  $brand
+ * @var array  $hero
+ * @var array  $products
+ * @var array  $multimedia
+ */
+$metaTitle  = $metaTitle ?? 'Kopi Nusantara | Eksplorasi Cita Rasa Warisan Bumi Pertiwi';
+$brand      = $brand ?? ['name' => 'Kopi Nusantara', 'tagline' => 'Mahakarya Aroma Tradisi Kepulauan Indonesia'];
+$hero       = $hero ?? ['badge' => '', 'titleMain' => '', 'subtitle' => '', 'typingWords' => ''];
+$products   = $products ?? [];
+$multimedia = $multimedia ?? [
+    'audio' => ['title' => '', 'curator' => '', 'duration' => '', 'file' => '', 'description' => ''],
+    'video' => ['title' => '', 'resolution' => '', 'file' => '', 'description' => '']
+];
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -249,7 +269,7 @@
                             <article class="product-card">
                                 <!-- Wrapper Tag Gambar Lokal -->
                                 <div class="product-image-wrapper">
-                                    <img src="<?= base_url(esc($item['image'])) ?>" 
+                                    <img src="<?= base_url($item['image']) ?>" 
                                          alt="<?= esc($item['name']) ?>" 
                                          loading="lazy">
                                     <span class="product-badge">
@@ -339,7 +359,7 @@
                                     <i class="bi bi-volume-up-fill me-1"></i> Pemutar Berkas Audio Lokal (assets/audio/):
                                 </label>
                                 <audio controls preload="metadata">
-                                    <source src="<?= base_url(esc($multimedia['audio']['file'])) ?>" type="audio/mpeg">
+                                    <source src="<?= base_url($multimedia['audio']['file']) ?>" type="audio/mpeg">
                                     Browser Anda tidak mendukung elemen pemutar audio HTML5.
                                 </audio>
                             </div>
@@ -372,7 +392,7 @@
                             <!-- Pemutar Video HTML5 Lokal -->
                             <div class="video-player-wrapper">
                                 <video controls preload="metadata" poster="<?= base_url('assets/img/kopi-gayo.jpg') ?>">
-                                    <source src="<?= base_url(esc($multimedia['video']['file'])) ?>" type="video/mp4">
+                                    <source src="<?= base_url($multimedia['video']['file']) ?>" type="video/mp4">
                                     Browser Anda tidak mendukung elemen pemutar video HTML5.
                                 </video>
                             </div>
